@@ -27,6 +27,9 @@ if(session($channel_id)==200 || session($channel_id)==null){
         html.dark, body.dark, .container.dark{
             background-color: #171734;
         }
+        h1.dark, p.dark, a.dark{
+            color: #ffffff !important;
+        }
 
     </style>
 
@@ -90,7 +93,7 @@ $api= \App\Http\Controllers\ApiController::get_content();
 		</a>
 <div class="col-12 row m-0 justify-content-center" style="min-height: 70vh">
 	<div class="m-auto">
-		<h1 id="subs" style="color:#282828;font-size:7vw;" class="text-center"><i class="fa fa-refresh fa-spin" style="font-size:7vw"></i></h1>
+		<h1 id="subs" style="color:#282828;font-size:7vw;" class="text-center {{session('mode')=='night' ? 'dark': ''}}"><i class="fa fa-refresh fa-spin" style="font-size:7vw"></i></h1>
 		<h1 style="color:#ff0000;font-size:5vw" >@lang('index.live') <img style="height:50px;" src="public/live.gif"> @lang('index.subscribers')</h1>
 	</div>
 </div>

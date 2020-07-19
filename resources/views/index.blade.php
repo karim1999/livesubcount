@@ -35,6 +35,9 @@
         html.dark, body.dark, .container.dark{
             background-color: #171734;
         }
+        h1.dark, p.dark, a.dark{
+            color: #ffffff !important;
+        }
         :root {
             background: #f5f6fa;
             color: #9c9c9c;
@@ -196,17 +199,17 @@
             <div class="col-6 text-left">
                 @if ( Config::get('app.locale') == 'en')
 
-                    <a style="color: #8e8e8f; text-decoration: none" class="" href="/switch_language/ar">العربية</a>
+                    <a style="color: #8e8e8f; text-decoration: none" class="language-link {{session('mode')=='night' ? 'dark': ''}}" href="/switch_language/ar">العربية</a>
 
                 @elseif ( Config::get('app.locale') == 'ar' )
 
-                    <a style="color: #8e8e8f; text-decoration: none" class="" href="/switch_language/en">English</a>
+                    <a style="color: #8e8e8f; text-decoration: none" class="language-link {{session('mode')=='night' ? 'dark': ''}}" href="/switch_language/en">English</a>
 
                 @endif
 
             </div>
             <div class="col-6 text-right" style="display: flex; flex-direction: row; justify-content: flex-end; align-items: center">
-                <p style="margin-right: 10px; margin-left: 10px">
+                <p style="margin-right: 10px; margin-left: 10px" class="switch-label {{session('mode')=='night' ? 'dark': ''}}">
                     @lang('index.dark_mode')
                 </p>
                 <label class="switch">
@@ -297,6 +300,8 @@
             $('body').addClass("dark");
             $('html').addClass("dark");
             $('.container').addClass("dark");
+            $('.language-link').addClass("dark");
+            $('.switch-label').addClass("dark");
 
             $.ajax({
                 method: "get",
@@ -310,6 +315,8 @@
             $('body').removeClass("dark");
             $('html').removeClass("dark");
             $('.container').removeClass("dark");
+            $('.language-link').removeClass("dark");
+            $('.switch-label').removeClass("dark");
 
 
             $('#site-logo').attr('src', '{{$api['site_profile']->logo_en_path}}');
