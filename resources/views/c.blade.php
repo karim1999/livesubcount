@@ -1,6 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Http;
 $channel_id = str_replace('https://www.youtube.com/channel/', '', $_GET['q']);
+$channel_id = str_replace('https://youtube.com/channel/', '', $_GET['q']);
+$channel_id = str_replace('www.youtube.com/channel/', '', $_GET['q']);
+$channel_id = str_replace('youtube.com/channel/', '', $_GET['q']);
 
 if(session($channel_id)==200 || session($channel_id)==null){
   $res = Http::get('https://www.googleapis.com/youtube/v3/channels?part=statistics&id='.$channel_id.'&key='."AIzaSyCJ783Sga9-QAOZwmq5TdO0iXtCpuF64_I");
@@ -9,7 +12,7 @@ if(session($channel_id)==200 || session($channel_id)==null){
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="{{session('mode')=='night' ? 'dark': ''}}">
 <head>
 
   <meta charset="utf-8">
@@ -20,6 +23,12 @@ if(session($channel_id)==200 || session($channel_id)==null){
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html.dark, body.dark, .container.dark{
+            background-color: #171734;
+        }
+
+    </style>
 
 
   @php
@@ -42,7 +51,7 @@ $api= \App\Http\Controllers\ApiController::get_content();
 
 
 </head>
-<body style="bg-light">
+<body  class="{{session('mode')=='night' ? 'dark': ''}}" style="bg-light">
 
 <div class="col-12 px-0">
     <div class="col-12 px-0">
@@ -68,7 +77,7 @@ $api= \App\Http\Controllers\ApiController::get_content();
 		  font-family: 'Almarai', sans-serif;
 		}
 	</style>
-<div class="container">
+<div class="container" {{session('mode')=='night' ? 'dark': ''}}>
 <br>
   <div class="text-dark">
     <div class="card-body text-center" style="min-height: 100vh">
