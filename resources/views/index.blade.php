@@ -184,13 +184,15 @@
         @endif
     </div>
     @if($api['advs']->header_status==1 &&  session('header_status')!="false")
-        <div class="col-12 px-0" style="background-color: #EB593C; color: white; text-align: center; padding: 5px">
             @if(session('language')=="ar")
+            <div class="col-12 px-0" style="background-color: #EB593C; color: white; text-align: center; padding: 5px; direction: rtl">
                 {!!preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1">$1</a>', $api['advs']->header_ar)!!}
+            </div>
             @else
+            <div class="col-12 px-0" style="background-color: #EB593C; color: white; text-align: center; padding: 5px; direction: ltr">
                 {!!preg_replace('!(((f|ht)tp(s)?://)[-a-zA-Zа-яА-Я()0-9@:%_+.~#?&;//=]+)!i', '<a href="$1">$1</a>', $api['advs']->header_en)!!}
+            </div>
             @endif
-        </div>
     @endif
 </div>
 
